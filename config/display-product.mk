@@ -109,6 +109,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.treat_170m_as_sRGB=1 \
     vendor.display.enable_display_extensions=1
 
+ifeq ($(PLATFORM_VERSION), 15)
+PRODUCT_PROPERTY_OVERRIDES +=  debug.sf.auto_latch_unsignaled=1
+endif
+
 # Enable offline rotator for Bengal.
 ifneq ($(TARGET_BOARD_PLATFORM),bengal)
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -218,7 +222,7 @@ ifeq ($(call is-vendor-board-platform,QCOM),true)
 endif
 
 
-ifeq ($(filter $(TARGET_BOARD_PLATFORM), kalama niobe), $(TARGET_BOARD_PLATFORM))
+ifeq ($(filter $(TARGET_BOARD_PLATFORM), kalama niobe neo61), $(TARGET_BOARD_PLATFORM))
     SOONG_CONFIG_qtidisplay_ubwcp_headers := false
 endif
 
